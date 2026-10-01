@@ -1,0 +1,229 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "os": "#18354c",
+    "text": "#7CB518",
+    "transient": "#7CB518"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "leading_diamond": "\ue0b6",
+          "properties": {
+            "alpine": "\uf300",
+            "arch": "\uf303",
+            "centos": "\uf304",
+            "debian": "\uf306",
+            "elementary": "\uf309",
+            "fedora": "\uf30a",
+            "gentoo": "\uf30d",
+            "linux": "\ue712",
+            "macos": "\ue711",
+            "manjaro": "\uf312",
+            "mint": "\uf30f",
+            "opensuse": "\uf314",
+            "raspbian": "\uf315",
+            "ubuntu": "\uf31c",
+            "windows": "\ue70f",
+            "wsl": "\ue712",
+            "wsl_separator": " on "
+          },
+          "style": "diamond",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "os"
+        },
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "style": "diamond",
+          "template": " \uf0e7 ",
+          "trailing_diamond": "\ue0b0",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "type": "root"
+        },
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "trailing_diamond": "\ue0b0",
+          "style": "diamond",
+          "template": "  {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
+        },
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "properties": {
+            "style": "agnoster_short",
+            "max_depth": 2,
+            "hide_root_location": true
+          },
+          "style": "diamond",
+          "template": " \ue5ff {{ .Path }} ",
+          "trailing_diamond": "\ue0b0",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "type": "path"
+        },
+        {
+          "type": "rust",
+          "background": "p:os",
+          "foreground": "p:text",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "trailing_diamond": "\ue0b0",
+          "style": "diamond",
+          "template": " \ue7a8 {{ .Full }} "
+        },
+        {
+          "type": "bun",
+          "background": "p:os",
+          "foreground": "p:text",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "trailing_diamond": "\ue0b0",
+          "style": "diamond",
+          "template": "  {{ .Full }} ",
+          "properties": {
+            "extensions": [
+              "bun.lockb",
+              "bunfig.toml",
+              "bun.lock"
+            ]
+          }
+        },
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "style": "diamond",
+          "template": " {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}\ue718 {{ .Full }} {{ if .Mismatch }} / {{ .Expected }} {{ end }}",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "trailing_diamond": "\ue0b0",
+          "type": "node",
+          "properties": {
+            "fetch_package_manager": true,
+            "pnpm_icon": "",
+            "npm_icon": " ",
+            "yarn_icon": "",
+            "bun_icon": "",
+            "extensions": [
+              "pnpm-lock.yaml",
+              ".nvmrc",
+              "pnpm-workspace.yaml",
+              ".pnpmfile.cjs",
+              ".vue",
+              "package-lock.json"
+            ]
+          }
+        },
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "style": "diamond",
+          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "trailing_diamond": "\ue0b0",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "type": "python"
+        },
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "style": "diamond",
+          "template": " \ue77f {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
+          "trailing_diamond": "\ue0b0",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "type": "dotnet"
+        },
+        {
+          "background": "p:os",
+          "foreground": "p:text",
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "diamond",
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0}} \ued95 {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}} \uf1bb {{ .WorktreeCount }}{{ end }} ",
+          "trailing_diamond": "\ue0b0",
+          "leading_diamond": "<transparent>\ue0b0</>",
+          "type": "git"
+        },
+        {
+          "type": "executiontime",
+          "style": "diamond",
+          "foreground": "p:text",
+          "background": "p:os",
+          "template": " {{ .FormattedMs }} ",
+          "background_templates": [
+            "{{ if gt .Code 0 }}#f1184c{{ end }}"
+          ],
+          "properties": {
+            "threshold": 500,
+            "style": "austin",
+            "always_enabled": true
+          },
+          "trailing_diamond": "\ue0b4",
+          "leading_diamond": "<transparent>\ue0b0</>"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "background": "transparent",
+      "segments": [
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "transparent",
+          "background": "transparent",
+          "options": {
+            "time_format": "15:04:05"
+          }
+        },
+        {
+          "type": "owm",
+          "style": "plain",
+          "foreground": "p:text",
+          "template": " {{ .Weather }}  {{ .Temperature }}{{ .UnitIcon }} ",
+          "properties": {
+            "api_key": "79245a4728b7ad5840e2bdc5b158a4d4",
+            "location": "Brașov,Bv,Ro",
+            "units": "metric",
+            "http_timeout": 5000,
+            "cache_timeout": 10
+          }
+        },
+        {
+          "foreground": "p:text",
+          "style": "plain",
+          "template": "\u276f ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "transient_prompt": {
+    "template": "at {{ .Segments.Time.CurrentDate | date .Segments.Time.Format }} {{ if .Segments.Path }}in {{ .Segments.Path.Path }} {{end}}{{ if .Segments.Git.Dir }}({{ .Segments.Git.RepoName }}) {{ end }}{{ if .Segments.Git.HEAD }}on {{ .Segments.Git.HEAD }} {{ end }}\u276f ",
+    "background": "transparent",
+    "foreground": "p:transient"
+  },
+  "secondary_prompt": {
+    "background": "transparent",
+    "foreground": "p:text",
+    "template": "-> "
+  },
+  "debug_prompt": {
+    "background": "transparent",
+    "foreground": "p:text",
+    "template": "~> "
+  },
+  "background": "transparent",
+  "console_title_template": "{{if .Root}}root :: {{end}}{{.Shell}} :: {{.Folder}}",
+  "final_space": true,
+  "version": 3
+}

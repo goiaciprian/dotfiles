@@ -1,3 +1,4 @@
 --target=$HOME
 --ignore=.stowrc
+--ignore=setup.sh
 --dotfiles

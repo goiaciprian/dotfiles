@@ -17,6 +17,7 @@
           name = "my-terminal-tools";
           paths = [
 	    pkgs.eza
+	    pkgs.stow
             pkgs.ncdu
             pkgs.neovim
             pkgs.lefthook

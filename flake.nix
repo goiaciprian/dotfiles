@@ -16,6 +16,7 @@
         packages.default = pkgs.buildEnv {
           name = "my-terminal-tools";
           paths = [
+	    pkgs.eza
             pkgs.ncdu
             pkgs.neovim
             pkgs.lefthook

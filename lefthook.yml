@@ -1,0 +1,5 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - run: gitleaks dir
+    - run: gitleaks git

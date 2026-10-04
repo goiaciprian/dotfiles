@@ -35,6 +35,8 @@
             tuicr.packages.${system}.default
             nub.packages.${system}.default
           ];
+
+	  pathsToLink = [ "/bin" "/share" ];
         };
       }
     );

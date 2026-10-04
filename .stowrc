@@ -1,5 +1,7 @@
 --target=$HOME
 --ignore=.stowrc
 --ignore=setup.sh
---ignore=nix
+--ignore=flake.nix
+--ignore=flake.lock
+--ignore=lefthook.yml
 --dotfiles

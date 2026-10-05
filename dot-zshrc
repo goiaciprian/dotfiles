@@ -49,6 +49,7 @@ export PATH
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+export ZSH_TMUX_AUTOSTART=true
 
 # ── History ───────────────────────────────────────────────
 HISTFILE="$HOME/.zsh_history"

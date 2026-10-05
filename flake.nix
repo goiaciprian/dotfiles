@@ -16,6 +16,7 @@
         packages.default = pkgs.buildEnv {
           name = "my-terminal-tools";
           paths = [
+	    pkgs.glow
 	    pkgs.eza
 	    pkgs.stow
             pkgs.ncdu

@@ -47,6 +47,9 @@ path=(
 )
 export PATH
 
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # ── History ───────────────────────────────────────────────
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=5000

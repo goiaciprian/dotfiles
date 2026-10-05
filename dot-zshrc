@@ -3,10 +3,14 @@ typeset -U fpath FPATH
 [[ -d "$HOME/.zsh/completions" ]] && fpath=("$HOME/.zsh/completions" $fpath)
 
 # Completion styles
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu no #select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# ── Plugins (Sheldon) ─────────────────────────────────────
+
+# ── Plugins (Antidote) ────────────────────────────────────
 # zsh-autosuggestions settings
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
@@ -15,18 +19,6 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 setopt AUTOCD
 setopt NOBEEP
 setopt NUMERIC_GLOB_SORT
-
-# Load Sheldon plugins (cached, fast)
-if (( $+commands[sheldon] )); then
-  eval "$(sheldon source)"
-fi
-
-# Fallback: initialize completions if not loaded by a plugin (e.g. zsh-autocomplete)
-if ! (( $+functions[_main_complete] )); then
-  [[ -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ]] || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-  autoload -Uz compinit
-  compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
-fi
 
 # ── Environment & PATH ────────────────────────────────────
 # Ensure uniqueness across PATH entries
@@ -65,6 +57,7 @@ setopt sharehistory
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
+setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # ── Terminal & Keybindings ────────────────────────────────
@@ -142,3 +135,56 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # The Fuck
 # eval $(thefuck --alias)
+
+# pnpm
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+zinit light zdharma-continuum/fast-syntax-highlighting
+#zinit light marlonrichert/zsh-autocomplete
+
+zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
+zinit light g-plane/pnpm-shell-completion
+
+zinit snippet OMZP::git
+zinit snippet OMZP::aws
+zinit snippet OMZP::gh
+zinit snippet OMZP::sudo
+zinit snippet OMZP::command-not-found
+
+autoload -U compinit && compinit
+
+zinit cdreplay -q

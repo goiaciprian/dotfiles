@@ -31,7 +31,7 @@
             pkgs.tmux
             pkgs.oh-my-posh
             pkgs.zsh
-            pkgs.sheldon
+            pkgs.zinit
             tuicr.packages.${system}.default
             nub.packages.${system}.default
           ];

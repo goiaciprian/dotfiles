@@ -8,6 +8,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 
 # ── Plugins (Antidote) ────────────────────────────────────
@@ -141,6 +142,10 @@ case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
+
+if command -v pnpm &>/dev/null; then
+  source <(pnpm completion zsh)
+fi
 # pnpm end
 
 
@@ -176,8 +181,11 @@ zinit light Aloxaf/fzf-tab
 zinit light zdharma-continuum/fast-syntax-highlighting
 #zinit light marlonrichert/zsh-autocomplete
 
-zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
-zinit light g-plane/pnpm-shell-completion
+#zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone" src="pnpm-shell-completion.plugin.zsh"
+#zinit light g-plane/pnpm-shell-completion
+
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search
 
 zinit snippet OMZP::git
 zinit snippet OMZP::aws

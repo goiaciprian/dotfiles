@@ -21,6 +21,7 @@
 	    pkgs.stow
             pkgs.ncdu
             pkgs.neovim
+	    pkgs.luarocks
             pkgs.lefthook
             pkgs.fzf
             pkgs.ripgrep

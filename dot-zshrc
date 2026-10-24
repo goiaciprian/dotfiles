@@ -10,17 +10,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
-
-# ── Plugins (Antidote) ────────────────────────────────────
-# zsh-autosuggestions settings
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
-ZSH_AUTOSUGGEST_USE_ASYNC=1
-
-setopt AUTOCD
-setopt NOBEEP
-setopt NUMERIC_GLOB_SORT
-
 # ── Environment & PATH ────────────────────────────────────
 # Ensure uniqueness across PATH entries
 typeset -U path PATH
@@ -42,6 +31,7 @@ path=(
   "$HOME/.config/yarn/global/node_modules/.bin"
   "$HOME/.nub/bin"
   "/opt/gradle/gradle-9.0.0/bin"
+  "/opt/nvim-linux-x86_64/bin"
   "/snap/bin"
   $path
 )
@@ -49,7 +39,6 @@ export PATH
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export ZSH_TMUX_AUTOSTART=true
 
 # ── History ───────────────────────────────────────────────
 HISTFILE="$HOME/.zsh_history"
@@ -177,6 +166,9 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+#zinit ice depth=1
+#zinit light jeffreytse/zsh-vi-mode
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -197,8 +189,9 @@ zinit snippet OMZP::gh
 zinit snippet OMZP::sudo
 zinit snippet OMZP::rust
 zinit snippet OMZP::command-not-found
-zinit snippet OMZP::tmux
+#zinit snippet OMZP::tmux
 
 autoload -U compinit && compinit
 
 zinit cdreplay -q
+

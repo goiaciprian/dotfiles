@@ -32,6 +32,8 @@
             pkgs.gh-dash
             pkgs.tmux
             pkgs.oh-my-posh
+            pkgs.luarocks
+            pkgs.gcc
             pkgs.zsh
             pkgs.zinit
             tuicr.packages.${system}.default

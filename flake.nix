@@ -3,45 +3,35 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tuicr.url = "github:agavra/tuicr";
     nub.url = "github:nubjs/nub";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, tuicr, nub, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        packages.default = pkgs.buildEnv {
-          name = "my-terminal-tools";
-          paths = [
-	    pkgs.glow
-	    pkgs.eza
-	    pkgs.stow
-            pkgs.ncdu
-            pkgs.neovim
-	    pkgs.luarocks
-            pkgs.lefthook
-            pkgs.fzf
-            pkgs.ripgrep
-            pkgs.zoxide
-            pkgs.bat
-            pkgs.git
-            pkgs.gh
-            pkgs.gh-dash
-            pkgs.tmux
-            pkgs.oh-my-posh
-            pkgs.luarocks
-            pkgs.gcc
-            pkgs.zsh
-            pkgs.zinit
-            tuicr.packages.${system}.default
-            nub.packages.${system}.default
-          ];
-
-	  pathsToLink = [ "/bin" "/share" ];
+  outputs = { self, nixpkgs, home-manager, tuicr, nub, ... }:
+    # builtins.currentSystem and builtins.getEnv are impure — run with --impure
+    let
+      system   = builtins.currentSystem;
+      username = builtins.getEnv "USER";
+      homeDir  = builtins.getEnv "HOME";
+      pkgs     = nixpkgs.legacyPackages.${system};
+    in {
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          {
+            home.username    = username;
+            home.homeDirectory = homeDir;
+          }
+          ./home.nix
+        ];
+        extraSpecialArgs = {
+          tuicr-pkg = tuicr.packages.${system}.default;
+          nub-pkg   = nub.packages.${system}.default;
         };
-      }
-    );
+      };
+    };
 }

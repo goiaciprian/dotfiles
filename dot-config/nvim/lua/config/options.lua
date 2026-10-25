@@ -33,3 +33,10 @@ opt.background = "dark"
 
 -- opt.list = true
 -- opt.listchars = { tab = ">> ", trail = ".", nbsp = "␣" }
+
+if vim.fn.has("win32") == 1 then
+  -- Setează calea către executabilul PowerShell
+  opt.shell = "pwsh.exe"
+
+  -- Configurează argumentele necesare pentru ca PowerShell să ruleze corect în Neovim
+end

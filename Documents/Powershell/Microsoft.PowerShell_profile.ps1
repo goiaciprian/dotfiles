@@ -40,7 +40,7 @@ Set-Alias -Name cp -Value Copy-Item -Option AllScope
 # takes 11 seconds
 # Import-Module -Name Microsoft.WinGet.CommandNotFound
 
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\cipriangodlike.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$HOME\.poshthemes\cipriangodlike.omp.json" | Invoke-Expression
 
 
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })

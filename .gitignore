@@ -1,2 +1,4 @@
 flake.lock
 dot-zsh_plugins.zsh
+private
+dot-config/nvim/lazy-lock.json

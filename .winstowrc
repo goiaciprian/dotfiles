@@ -1,6 +1,5 @@
-default-target = "C:\\Users\\cipriang" # should work with $HOME
+default-target = "C:\\Users\\cipriang"
 
-# not sure if it's skipping the folders in the dot-config mentioned
-ignore = [".stowrc", ".winstowrc", "setup.sh", "flake.nix", "flake.lock", "home.nix", "lefthook.yml", ".gitignore", "dot-zshrc", "dot-config/gh-dash", "dot-config/tuicr", ".git" ]
+ignore = [".stowrc", ".winstowrc", "setup.sh", "flake.nix", "flake.lock", "home.nix", "lefthook.yml", ".gitignore", "dot-zshrc", "gh-dash", "tuicr", ".git", "winstow.exe", "nvim" ] # nvim should be linked in AppData/Local/nvim
 
-# --dotfiles from gnu not supported
+dotfiles = true

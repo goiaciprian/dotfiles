@@ -3,7 +3,6 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# ── Colours ───────────────────────────────────────────────────
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
@@ -14,15 +13,6 @@ die() {
   echo -e "${RED}[setup] ERROR:${NC} $*"
   exit 1
 }
-
-if id -nG "$USER" | grep -qw nix-users; then
-  : # already a member, nothing to do
-else
-  warn "User '$USER' is not in nix-users. Adding now..."
-  sudo usermod -aG nix-users "$USER"
-  info "Re-running script under nix-users group (no logout needed)..."
-  exec sg nix-users "$0" "$@"
-fi
 
 if [ -f /etc/profile.d/nix.sh ]; then
   source /etc/profile.d/nix.sh

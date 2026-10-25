@@ -1,8 +1,12 @@
 --target=$HOME
 --ignore=.stowrc
+--ignore=.winstowrc
 --ignore=setup.sh
 --ignore=flake.nix
 --ignore=flake.lock
 --ignore=lefthook.yml
 --ignore=home.nix
+--ignore=^Documents/.+
+--ignore=.gitignore
+--ignore=^.git/.+
 --dotfiles

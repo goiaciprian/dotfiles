@@ -6,8 +6,12 @@
     "lazyvim.plugins.extras.coding.nvim-cmp",
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
+    "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.json",
+    "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.lang.typescript.vtsls"
+    "lazyvim.plugins.extras.lang.typescript.vtsls",
+    "lazyvim.plugins.extras.linting.eslint"
   ],
   "news": {
     "NEWS.md": "11866"

@@ -6,7 +6,7 @@ return {
 		provider = "codex-acp",
 		acp_providers = {
 			["codex-acp"] = {
-				command = "~/.local/share/pnpm/bin/codex-acp",
+				command = "codex-acp",
 			},
 			["copilot-cli"] = {
 				command = "copilot",

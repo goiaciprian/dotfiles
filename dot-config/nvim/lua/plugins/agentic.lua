@@ -66,5 +66,13 @@ return {
 			desc = "Add all buffer diagnostics to Agentic",
 			mode = { "n" },
 		},
+		{
+			"<leader>ac",
+			function()
+				require("agentic").stop_generation()
+			end,
+			mode = { "n" },
+			desc = "Agentic: Cancel Active Turn",
+		},
 	},
 }

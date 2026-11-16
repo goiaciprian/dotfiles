@@ -28,9 +28,13 @@ function gst {
 function Get-Git { & git $args }
 Set-Alias -Name g -Value Get-Git
 
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
-Set-PSReadLineOption -EditMode Windows
+try {
+  Set-PSReadLineOption -PredictionSource History -ErrorAction Stop
+  Set-PSReadLineOption -PredictionViewStyle ListView -ErrorAction Stop
+  Set-PSReadLineOption -EditMode Windows -ErrorAction Stop
+}
+catch {
+}
 Set-Alias -Name touch -Value New-Item
 Set-Alias -Name grep -Value Select-String
 Set-Alias -Name cp -Value Copy-Item -Option AllScope
@@ -44,3 +48,4 @@ oh-my-posh init pwsh --config "$HOME\.poshthemes\cipriangodlike.omp.json" | Invo
 
 
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression

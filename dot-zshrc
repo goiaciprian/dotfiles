@@ -105,10 +105,13 @@ function misea() {
 }
 
 # ── Tool Integrations & Completions ───────────────────────
-# NVM (Node Version Manager)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# fnm
+FNM_PATH="/home/cipriang/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --use-on-cd --shell zsh)"
+  eval "$(fnm completions --shell zsh)"
+fi
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
@@ -182,6 +185,9 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit ice lucid wait'0'
 zinit light joshskidmore/zsh-fzf-history-search
+
+zinit ice as"completion"
+zinit snippet OMZP::docker
 
 zinit snippet OMZP::git
 zinit snippet OMZP::aws
